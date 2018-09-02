@@ -1,0 +1,20 @@
+FROM debian:stretch-slim
+WORKDIR /ss
+RUN groupadd -r ss && useradd -r -g ss ss \
+    && libs="libev-dev libudns-dev libsodium-dev libmbedtls-dev libc-ares-dev" \
+    && dependencies="git-core ca-certificates autoconf automake libtool asciidoc xmlto gettext build-essential libpcre3-dev" \
+    && apt-get update \
+    && apt-get upgrade -y \
+    && apt-get install -y --no-install-recommends $dependencies $libs \
+    && git clone https://github.com/shadowsocks/shadowsocks-libev.git . \
+    && git submodule update --init --recursive \
+    && ./autogen.sh \
+    && ./configure \
+    && make \
+    && make install \
+    && apt-get purge -y $dependencies \
+    && apt-get clean -y \
+    && apt-get autoclean -y \
+    && apt-get autoremove -y \
+    && rm -rf /var/lib/apt/lists/* \
+    && rm -rf /ss/*

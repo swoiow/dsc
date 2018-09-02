@@ -1,0 +1,22 @@
+* {
+    text-shadow: 0.03em 0.03em 0.125em #999999 !important;
+}
+*:not([class*="icon"]):not(i) {
+    font-family: "" !important;
+}
+a {
+    text-decoration: none !important
+}
+a {
+    -webkit-transition: all 0.3s ease-out;
+}
+a:hover {
+    color: #39F !important;
+    /* text-shadow: -5px 3px 12px #39F !important;*/
+
+    -webkit-transition: all 0.3s ease-out;
+}
+*::-webkit-selection {
+    background: #333333 !important;
+    color: #00FF00 !important;
+}

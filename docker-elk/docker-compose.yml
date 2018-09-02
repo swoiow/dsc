@@ -1,0 +1,39 @@
+version: '3.1'
+
+services:
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.2.3
+    environment:
+        - cluster.name=docker-cluster
+        - discovery.type=single-node
+        #-  bootstrap.memory_lock=true
+        - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
+        - xpack.security.enabled=false
+        - xpack.monitoring.enabled=false
+        - xpack.ml.enabled=false
+        - xpack.graph.enabled=false
+        - xpack.watcher.enabled=false
+        - xpack.logstash.enabled=false
+        #- ELASTIC_PASSWORD=admin
+    ports:
+      - 0.0.0.0:9200:9200
+    volumes:
+        - /data/esdatadir:/usr/share/elasticsearch/data
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:6.2.3
+    environment:
+        - xpack.security.enabled=false
+
+    ports:
+      - 0.0.0.0:5601:5601
+#    depends_on:
+#      - elasticsearch
+
+  apm:
+    image: docker.elastic.co/apm/apm-server:6.2.3
+    volumes:
+      - /data/elk/apm-server.yml:/usr/share/apm-server/apm-server.yml
+    ports:
+      - 0.0.0.0:8200:8200

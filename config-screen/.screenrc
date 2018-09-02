@@ -1,0 +1,49 @@
+# Set default encoding using utf8
+defutf8 on
+
+# 解决中文乱码,这个要按需配置
+defencoding utf8
+encoding utf8 utf8
+
+# 兼容shell 使得.bashrc .profile /etc/profile等里面的别名等设置生效
+shell -$SHELL
+
+# set the startup message
+startup_message off
+term linux
+
+# 解决无法滚动
+termcapinfo xterm|xterms|xs ti@:te=\E[2J
+
+# 屏幕缓冲区行数
+defscrollback 10000
+
+# 下标签设置
+hardstatus on
+caption always "%{= kw}%-w%{= kG}%{+b}[%n %t]%{-b}%{= kw}%+w %=%d %M %0c %{g}%H%{-}"
+
+# 关闭闪屏
+vbell off
+
+# Enable 256 color term
+term xterm-256color
+
+#Keboard binding
+## bind Alt+z to move to previous window
+bindkey ^[z prev
+
+## bind Alt+x to move to next window
+bindkey ^[x next
+
+# bind Alt+n to create a new screen
+bindkey ^[n screen
+
+# bind Alt+d to detach screen session (to background)
+bindkey ^[d detach
+
+# bind Alt+k to kill current screen window
+bindkey ^[k kill
+
+# bind Alt+r to rename current screen window
+bindkey ^[r title
+

@@ -1,0 +1,12 @@
+# docker-compose.yml
+version: "3"
+services:
+  gfw:
+    restart: always
+    image: ss
+    ports:
+      - "11111:1080/tcp"
+      - "11111:1080/udp"
+    volumes:
+      - /etc/shadowsocks.json:/etc/shadowsocks.json
+    command: ["ss-server", "-c", "/etc/shadowsocks.json"]

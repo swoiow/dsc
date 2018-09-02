@@ -1,0 +1,16 @@
+FROM debian:stretch-slim
+WORKDIR /ss
+ADD https://github.com/clowwindy/shadowsocks-libev/archive/master.tar.gz .
+RUN apt-get update --fix-missing \
+    && apt-get upgrade -y \
+    && apt-get install -y --no-install-recommends build-essential autoconf libtool libssl-dev \
+    && cd shadowsocks-libev-master \
+    && ./configure \
+    && make \
+    && make install \
+    && apt-get --purge autoremove -y build-essential autoconf libtool \
+    && apt-get clean -y \
+    && apt-get autoclean -y \
+    && apt-get autoremove -y \
+    && rm -rf /var/lib/apt/lists/* \
+    && rm -rf /ss/*

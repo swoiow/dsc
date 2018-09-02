@@ -1,0 +1,9 @@
+# docker-compose.yml
+version: "3"
+services:
+  gfw:
+    image: ss
+    ports:
+      - "1081:1080"
+    network_mode: "bridge"
+    command: ["ss-local", "-s", "server_ip", "-p", "23366", "-b", "0.0.0.0", "-l", "1080", "-k", "your_password", "-m", "aes-128-cfb"]
