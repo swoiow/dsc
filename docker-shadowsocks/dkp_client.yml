@@ -3,13 +3,13 @@ services:
   ss_main:
     build:
       context: .
-      dockerfile: dfk_client
+      dockerfile: dkf_client
 
     container_name: 'ss_client'
     image: 'ss:py'
-    command: '-s 服务器IP -p 服务器端口 -k 密码 -m aes-128-cfb -b 0.0.0.0 -l 1080 --fast-open'
+    command: '-s 服务器IP -p 服务器端口 -k 密码 -m salsa20 -b 0.0.0.0 -l 1080 --fast-open'
     ports:
-    - '0.0.0.0:23366:1090'
+    - '0.0.0.0:1081:1080'
     networks:
       bucket_net: {ipv4_address: 172.110.0.2}
     ulimits:
