@@ -1,28 +1,25 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from _internal_utils import pf, exec_bash
 from fabric.api import cd, settings, sudo
 
-from __init__ import pf
 
-
+@exec_bash
 def depend_redhat():
     """
     yum install -y gcc make
     yum install -y zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel gdbm-devel xz-devel libffi-devel
     """
-    for line in depend_redhat.__doc__.split("\n"):
-        sudo(line)
 
 
+@exec_bash
 def depend_debian():
     """
     apt-get update
     apt-get install -y gcc make
     apt-get install -y libreadline-gplv2-dev libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev
     """
-    for line in depend_debian.__doc__.split("\n"):
-        sudo(line)
 
 
 def download_py2():

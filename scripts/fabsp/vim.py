@@ -3,7 +3,7 @@
 
 from fabric.api import cd, settings, sudo
 
-from __init__ import pf
+from _internal_utils import pf
 
 
 def depend_debian():
@@ -33,7 +33,7 @@ def depend():
 
 def download():
     """
-    curl -o vim.tar.gz https://codeload.github.com/vim/vim/tar.gz/v8.0.1806
+    curl -o vim.tar.gz https://codeload.github.com/vim/vim/tar.gz/v8.1.0366
     tar xzf vim.tar.gz
     """
 
@@ -54,6 +54,6 @@ def install():
 
     download()
 
-    with cd("/usr/src/vim-8.0.1806"), settings(warn_only=True):
+    with cd("/usr/src/vim-8.1.0366"), settings(warn_only=True):
         for line in install.__doc__.split("\n"):
             sudo(line)
