@@ -3,13 +3,19 @@ services:
   ss_main:
     build:
       context: .
-      dockerfile: dkf_server
+      dockerfile: dfk_server
 
     container_name: 'ss_server'
     image: 'ss:py'
-    command: '-s 172.110.0.2 -p 1090 -k 密码 -m salsa20 --fast-open'
+    deploy:
+      restart_policy:
+        condition: unless-stopped
+        delay: 5s
+        max_attempts: 3
+
+    command: '-s 172.110.0.2 -p 1090 -k 密码 -m aes-128-cfb --fast-open'
     ports:
-    - '0.0.0.0:13366:1090'
+    - '0.0.0.0:23366:1090'
     networks:
       bucket_net: {ipv4_address: 172.110.0.2}
     ulimits:
