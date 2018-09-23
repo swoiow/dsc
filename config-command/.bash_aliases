@@ -5,8 +5,8 @@ if [ -x /usr/bin/dircolors ]; then
 
     export LS_OPTIONS='--color=auto'
 
-    alias ls='ls $LS_OPTIONS -CFA'
-    alias la='ls -al'
+    alias ls='ls $LS_OPTIONS'
+    alias la='ls $LS_OPTIONS -CFA'
     alias ll='ls $LS_OPTIONS -l'
 
     alias dir='dir $LS_OPTIONS'
