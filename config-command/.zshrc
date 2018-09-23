@@ -104,5 +104,5 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 # Set Home & End key map
-bindkey "^[OH" beginning-of-line
-bindkey "^[OF" end-of-line
+bindkey '\e[1~' beginning-of-line
+bindkey '\e[4~' end-of-line
