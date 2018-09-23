@@ -65,7 +65,7 @@ DISABLE_AUTO_UPDATE="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
-  vundle
+  # vundle
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -77,12 +77,12 @@ source $ZSH/oh-my-zsh.sh
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+Preferred editor for local and remote sessions
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='mvim'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -102,3 +102,7 @@ source $ZSH/oh-my-zsh.sh
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
+
+# Set Home & End key map
+bindkey "^[OH" beginning-of-line
+bindkey "^[OF" end-of-line
