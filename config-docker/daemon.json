@@ -1,3 +1,6 @@
 {
-    "registry-mirrors": ["https://main.mirror.aliyuncs.com"]
+  "registry-mirrors": [
+    "https://main.mirror.aliyuncs.com",
+    "https://registry.docker-cn.com"
+  ]
 }
