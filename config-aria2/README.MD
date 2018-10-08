@@ -4,7 +4,7 @@
 [Aria2 & YAAW 使用说明](https://aria2c.com/usage.html)
 
 > prepare.sh
-```angular2html
+```
 useradd dockeruser
 
 mkdir config
