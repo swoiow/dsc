@@ -77,9 +77,11 @@
 
     - Visual C++ (from [vc_github] || [vc_microsoft_main])
     - Microsoft Visual C++ Compiler for Python 2.7 [![][wbIcon]][vc-python] [![][dlIcon]][dl_vcpython]
-    - Microsoft .NET Framework
+    - Microsoft .NET Framework [![][wbIcon]][dont_net_microsoft_main]
     - Java
-    - DirectX End-User Runtimes [March 2009]
+    - DirectX End-User Runtimes 
+      - [March 2009]
+      - [June 2010] [![][wbIcon]][dx2010-07]
     - [U盘安装完美的WIN7操作系统教程](https://www.jd.com/phb/zhishi/646551bcf97bbc69.html)
 
 [vc_microsoft_main]: https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads
@@ -99,6 +101,8 @@
 [dl_vc2008-64]: http://download.microsoft.com/download/b/d/e/bde0381b-20e2-4631-a5f4-aa72111a23d8/vcredist_x64.exe
 [dl_vc2010-64]: http://download.microsoft.com/download/A/8/0/A80747C3-41BD-45DF-B505-E9710D2744E0/vcredist_x64.exe
 [dl_vcpython]: http://download.microsoft.com/download/7/9/6/796EF2E4-801B-4FC4-AB28-B59FBF6D907B/VCForPython27.msi
+[dont_net_microsoft_main]: https://www.microsoft.com/net/download
+[dx2010-07]: https://www.microsoft.com/en-us/download/details.aspx?id=8109
 
 
 ---
