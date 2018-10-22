@@ -1,12 +1,18 @@
 [core]
 	editor = vim
 	autocrlf = true
+	safecrlf = true
 	whitespace = trailing-space
+    ignorecase = true
 [alias]
 	ig = "!f() { curl -L -s https://raw.githubusercontent.com/swoiow/dsc/master/.gitignore -o .gitignore ;}; f"
-	ag = "!f() { eval $(ssh-agent -s) && ssh-add ~/.ssh/github && ssh-add ~/.ssh/bitbucket ;}; f"
+	ag = "!f() { eval $(ssh-agent -s) && ssh-add ~/.ssh/github && ssh-add ~/.ssh/bitbucket && ssh-add ~/.ssh/gitlab ;}; f"
 	githubuser = "!f() { git config user.name swoiow && git config user.email swoiow@users.noreply.github.com ;}; f"
-	devuser = "!f() { git config user.name dev && git config user.email dev@localhost ;}; f"
+	devuser = "!f() { git config user.name DevUser && git config user.email user@localhost.dev ;}; f"
+    setcrlf = "!f() { case \"$(uname -s)\" in \
+                        *WIN*|*NT*|MSYS*) git config --global core.autocrlf true ;; \
+                        *) git config --global core.autocrlf input ;; \
+                      esac ;}; f"
 [color]
 	branch  = auto
 	diff  = auto
