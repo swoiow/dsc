@@ -1,3 +1,19 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+
+Plugin 'Valloric/YouCompleteMe'
+
+Plugin 'jnurmine/Zenburn'
+Plugin 'altercation/vim-colors-solarized'
+
+call vundle#end()            " required
+filetype plugin indent on    " required
+
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " 显示相关
 """"""""""""""""""""""""""""""""""""""""""""""""""
@@ -45,3 +61,20 @@ set mouse=v
 " set mouse=a
 " set selection=exclusive
 " set selectmode=mouse,key
+
+""""""""""""""""""""""""""""""""""""""""""""""""""
+" VIM Plugin Config
+""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" YCM
+let g:ycm_autoclose_preview_window_after_completion=1
+map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+" Theme
+if has('gui_running')
+  set background=dark
+  colorscheme solarized
+else
+  colorscheme zenburn
+endif
+call togglebg#map("<F5>")
