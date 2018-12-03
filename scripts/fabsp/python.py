@@ -66,7 +66,7 @@ def setup_pip():
 def install_py2():
     """
     ./configure --enable-optimizations --enable-shared
-    make
+    make -s -j2
     make install
     ln -sf /usr/local/bin/python /usr/bin/python
     """
@@ -83,7 +83,7 @@ def install_py2():
 def install_py3():
     """
     ./configure --enable-optimizations --enable-shared
-    make
+    make -s -j2
     make install
     ln -sf /usr/local/bin/python3 /usr/bin/python3
     """
