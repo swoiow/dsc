@@ -24,8 +24,7 @@ def depend_debian():
 
 def download_py2():
     """
-    curl -o Python2.tgz https://www.python.org/ftp/python/2.7.15/Python-2.7.15.tgz
-    tar xzf Python2.tgz
+    curl -sL https://www.python.org/ftp/python/2.7.15/Python-2.7.15.tgz | tar -xz
     """
 
     with cd("/usr/src"), settings(warn_only=True):
@@ -35,8 +34,7 @@ def download_py2():
 
 def download_py3():
     """
-    curl -o Python3.tgz https://www.python.org/ftp/python/3.6.6/Python-3.6.6.tgz
-    tar xzf Python3.tgz
+    curl -sL https://www.python.org/ftp/python/3.6.6/Python-3.6.6.tgz | tar -xz
     """
 
     with cd("/usr/src"), settings(warn_only=True):
@@ -67,7 +65,7 @@ def setup_pip():
 
 def install_py2():
     """
-    ./configure --enable-optimizations
+    ./configure --enable-optimizations --enable-shared
     make
     make install
     ln -sf /usr/local/bin/python /usr/bin/python
@@ -84,7 +82,7 @@ def install_py2():
 
 def install_py3():
     """
-    ./configure --enable-optimizations
+    ./configure --enable-optimizations --enable-shared
     make
     make install
     ln -sf /usr/local/bin/python3 /usr/bin/python3
