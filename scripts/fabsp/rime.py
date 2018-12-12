@@ -7,7 +7,7 @@ from fabric.api import sudo
 def depend_redhat():
     """
     yum install -y gcc gcc-c++ boost boost-devel cmake make
-    yum install glog glog-devel kyotocabinet kyotocabinet-devel marisa-devel yaml-cpp yaml-cpp-devel gtest gtest-devel libnotify zlib zlib-devel gflags gflags-devel
+    yum install glog glog-devel kyotocabinet kyotocabinet-devel marisa-devel yaml-cpp yaml-cpp-devel gtest gtest-devel libnotify zlib zlib-devel gflags gflags-devel leveldb leveldb-devel
     cd /usr/src
 
     # install opencc
