@@ -7,7 +7,7 @@ from fabric.api import sudo
 def depend_redhat():
     """
     yum install -y gcc gcc-c++ boost boost-devel cmake make
-    yum install glog glog-devel kyotocabinet kyotocabinet-devel marisa-devel yaml-cpp yaml-cpp-devel gtest gtest-devel libnotify zlib zlib-devel gflags gflags-devel leveldb leveldb-devel
+    yum install glog glog-devel kyotocabinet kyotocabinet-devel marisa-devel yaml-cpp yaml-cpp-devel gtest gtest-devel libnotify zlib zlib-devel gflags gflags-devel leveldb leveldb-devel libnotify-devel ibus-devel
     cd /usr/src
 
     # install opencc
@@ -15,7 +15,7 @@ def depend_redhat():
     cd OpenCC-ver.1.0.5/
     make
     make install
-    ls -s /usr/lib/libopencc.so /usr/lib64/libopencc.so
+    ln -s /usr/lib/libopencc.so /usr/lib64/libopencc.so
 
     cd /usr/src
     git clone --recursive https://github.com/rime/ibus-rime.git
