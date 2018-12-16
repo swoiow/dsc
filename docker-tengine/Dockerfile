@@ -1,9 +1,9 @@
 FROM debian:stretch-slim
 
-ARG tengine_version=2.2.2
+ARG tengine_version=2.2.3
 ARG pcre_version=8.42
 ARG jemalloc_version=5.1.0
-ARG openssl_version=1.1.1-pre8
+ARG openssl_version=1.1.1a
 ARG zlib_version=1.2.11
 
 ENV TENGINE_VERSION=$tengine_version \
@@ -31,14 +31,13 @@ WORKDIR /usr/src
 RUN dependencies="g++ autoconf make curl ca-certificates" \
     && apt-get update \
     && apt-get install --no-install-recommends --no-install-suggests -y $dependencies \
-    && curl -L https://github.com/alibaba/tengine/archive/tengine-${TENGINE_VERSION}.tar.gz | tar zx \
+    && curl -L https://codeload.github.com/alibaba/tengine/tar.gz/${TENGINE_VERSION} | tar zx \
     && curl -L https://downloads.sourceforge.net/project/pcre/pcre/${PCRE_VERSION}/pcre-${PCRE_VERSION}.tar.gz | tar zx \
     && curl -L https://www.openssl.org/source/openssl-${OPENSSL_VERSION}.tar.gz | tar zx  \
     && curl -L https://zlib.net/zlib-${ZLIB_VERSION}.tar.gz | tar zx \
     && curl -L https://github.com/jemalloc/jemalloc/archive/${JEMALLOC_VERSION}.tar.gz | tar zx \
     && cd /usr/src/jemalloc-${JEMALLOC_VERSION} && sh ./autogen.sh \
 
-    && mv /usr/src/tengine-tengine-${TENGINE_VERSION} /usr/src/tengine-${TENGINE_VERSION} \
     && cd /usr/src/tengine-${TENGINE_VERSION} \
     && ./configure ${CONFIGURE} \
 
