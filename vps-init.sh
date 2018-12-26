@@ -33,7 +33,7 @@ sed -i 's/#HostbasedAuthentication no/HostbasedAuthentication no/g' /etc/ssh/ssh
 
 echo "改ssh端口"
 sed -i 's/#Port define/Port 12345/g' /etc/ssh/sshd_config
-firewall-cmd --zone=public --add-port=33404/tcp --permanent
+firewall-cmd --zone=public --add-port=12345/tcp --permanent
 
 echo "重启 SSH 服务"
 service sshd restart
