@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from _internal_utils import pf, exec_bash
-from fabric.api import cd, settings, sudo
+from _internal_utils import exec_bash, pf
+from fabric.api import cd, run, settings, sudo
 
 
 @exec_bash
@@ -48,7 +48,8 @@ def depend():
         ("redhat", depend_redhat),
     ]
 
-    dict(depend_map)[pf()]()
+    ret = run("python -c 'import platform;platform.platform()'")
+    dict(depend_map)[pf(ret)]()
 
 
 def setup_pip():
@@ -69,6 +70,7 @@ def install_py2():
     make -s -j2
     make install
     ln -sf /usr/local/bin/python /usr/bin/python
+    echo "/usr/local/lib/" > /etc/ld.so.conf.d/python3.conf
     ldconfig
     """
 
@@ -87,6 +89,7 @@ def install_py3():
     make -s -j2
     make install
     ln -sf /usr/local/bin/python3 /usr/bin/python3
+    echo "/usr/local/lib/" > /etc/ld.so.conf.d/python3.conf
     ldconfig
     """
 
