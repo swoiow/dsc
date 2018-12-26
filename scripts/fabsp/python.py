@@ -34,7 +34,7 @@ def download_py2():
 
 def download_py3():
     """
-    curl -sL https://www.python.org/ftp/python/3.6.6/Python-3.6.6.tgz | tar -xz
+    curl -sL https://www.python.org/ftp/python/3.6.8/Python-3.6.8.tgz | tar -xz
     """
 
     with cd("/usr/src"), settings(warn_only=True):
@@ -69,6 +69,7 @@ def install_py2():
     make -s -j2
     make install
     ln -sf /usr/local/bin/python /usr/bin/python
+    ldconfig
     """
 
     depend()
@@ -86,12 +87,13 @@ def install_py3():
     make -s -j2
     make install
     ln -sf /usr/local/bin/python3 /usr/bin/python3
+    ldconfig
     """
 
     depend()
 
     download_py3()
 
-    with cd("/usr/src/Python-3.6.6"), settings(warn_only=True):
+    with cd("/usr/src/Python-3.6.8"), settings(warn_only=True):
         for line in install_py3.__doc__.split("\n"):
             sudo(line)

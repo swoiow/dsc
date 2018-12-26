@@ -6,7 +6,7 @@ from fabric.api import cd, settings, sudo
 
 def download():
     """
-    curl -o haproxy.tar.gz https://www.haproxy.org/download/1.8/src/haproxy-1.8.8.tar.gz
+    curl -o haproxy.tar.gz https://www.haproxy.org/download/1.9/src/haproxy-1.9.0.tar.gz
     tar xzf haproxy.tar.gz
     """
 
@@ -23,6 +23,6 @@ def install():
 
     download()
 
-    with cd("/usr/src/haproxy-1.8.8"), settings(warn_only=True):
+    with cd("/usr/src/haproxy-1.9.0"), settings(warn_only=True):
         for line in install.__doc__.split("\n"):
             sudo(line)
