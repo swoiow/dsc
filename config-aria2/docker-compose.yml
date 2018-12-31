@@ -1,0 +1,18 @@
+version: "3.5"
+services:
+  aria2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    image: aria2
+    container_name: aria2
+
+    user: "91192:91192"
+
+    ports:
+      - 0.0.0.0:1680:6800
+
+    volumes:
+      - $PWD/config:/aria2/config
+      - $PWD/downloads:/aria2/downloads
