@@ -5,17 +5,16 @@
 [Aria2 & YAAW 使用说明](https://aria2c.com/usage.html)
 
 
-### prepare command
-```
-chown -R 99:99 config
-chown -R 99:99 downloads
-```
+### HOW
+1. ` git clone `
 
+1.1. (option) change user in ` docker-compose.yml `, as the same time change it below(91192). 
 
-### docker command
+2. ```
+    chown -R 91192:91192 config
+    chown -R 91192:91192 downloads
+   ```
 
-> The container is running under uid nobody(99) gid nobody(99). 
+3. change username/password in ` docker-compose.yml `
 
-```
-docker-compose up
-```
+4. ` docker-compose up `

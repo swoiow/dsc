@@ -15,7 +15,8 @@ touch /aria2/config/aria2.session
 
 if [[ ! -e /aria2/config/aria2.conf ]]
 then
-  cp /etc/aria2.conf.default /aria2/config/aria2.conf
+    mkdir -p /aria2/config
+    cp /etc/aria2.conf.default /aria2/config/aria2.conf
 fi
 
 echo "[DONE]"
@@ -32,6 +33,7 @@ echo "Starting aria2c"
 
 exec aria2c \
     --conf-path=/aria2/config/aria2.conf \
+    --rpc-secret=$SECRET \
   > /dev/stdout \
   2 > /dev/stderr
 

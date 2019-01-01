@@ -1,6 +1,6 @@
 FROM alpine:edge
 
-ADD https://github.com/OpenGG/docker-aria2/raw/master/root/aria2.conf.default /etc/aria2.conf.default
+ADD https://github.com/swoiow/dsc/raw/master/config-aria2/config/aria2.conf /etc/aria2.conf.default
 ADD https://github.com/swoiow/dsc/raw/master/config-aria2/prepare.sh /prepare.sh
 
 RUN set -xe \
