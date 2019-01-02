@@ -13,9 +13,6 @@ services:
     ports:
       - 0.0.0.0:1680:6800
 
-    environment:
-      - "SECRET=<password>"
-
     volumes:
       - $PWD/config:/aria2/config
       - $PWD/downloads:/aria2/downloads

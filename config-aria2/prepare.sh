@@ -33,7 +33,6 @@ echo "Starting aria2c"
 
 exec aria2c \
     --conf-path=/aria2/config/aria2.conf \
-    --rpc-secret=$SECRET \
   > /dev/stdout \
   2 > /dev/stderr
 
