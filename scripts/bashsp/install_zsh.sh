@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -ex
+
 file=~/.bash_aliases
 if [ ! -f "$file" ]; then
     curl -sL -o "$file" https://github.com/swoiow/dsc/raw/master/config-command/.bash_aliases
