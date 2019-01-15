@@ -1,16 +1,21 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*
 
+from os import environ
+
+from _internal_utils import exec_bash, lines, pf
 from fabric.api import cd, settings, sudo
 
-from _internal_utils import pf
+
+if not environ.get("VIM"):
+    environ["VIM"] = "8.1.0630"
 
 
 def depend_debian():
     """
     apt-get install -y libncurses5-dev libncursesw5-dev
     """
-    for line in depend_debian.__doc__.split("\n"):
+    for line in lines(depend_debian):
         sudo(line)
 
 
@@ -18,7 +23,7 @@ def depend_redhat():
     """
     yum install -y ncurses-devel
     """
-    for line in depend_redhat.__doc__.split("\n"):
+    for line in lines(depend_redhat):
         sudo(line)
 
 
@@ -33,12 +38,12 @@ def depend():
 
 def download():
     """
-    curl -sL https://github.com/vim/vim/archive/v8.1.0630.tar.gz | tar -xz
+    curl -sL https://github.com/vim/vim/archive/v{var}.tar.gz | tar -xz
     """
 
     with cd("/usr/src/"), settings(warn_only=True):
-        for line in download.__doc__.split("\n"):
-            sudo(line)
+        for line in lines(download):
+            sudo(line.format(var=environ["VIM"]))
 
 
 def install():
@@ -53,6 +58,17 @@ def install():
 
     download()
 
-    with cd("/usr/src/vim-8.1.0630"), settings(warn_only=True):
-        for line in install.__doc__.split("\n"):
+    with cd("/usr/src/vim-{var}".format(var=environ["VIM"])), settings(warn_only=True):
+        for line in lines(install):
             sudo(line)
+
+
+@exec_bash
+def install_plug():
+    """
+    #yum install install -y cmake gcc-c++ make cmake3
+    #git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    #curl -sL -o ~/.vimrc https://github.com/swoiow/dsc/raw/master/config-vim/.vimrc
+    vim +PluginInstall +qall
+    cd ~/.vim/bundle/YouCompleteMe && python3 install.py
+    """

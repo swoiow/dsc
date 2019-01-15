@@ -2,12 +2,15 @@
 # -*- coding: utf-8 -*-
 
 import functools
-import platform
 import re
 
 
-def pf():
-    v = platform.platform()
+def pf(v=None):
+    if not v:
+        from fabric.api import run
+
+        v = run("python -c 'import platform; print(platform.platform())'")
+
     v = v.lower()
     if re.search(re.compile("(debian|ubuntu)+"), v):
         return "debian"
@@ -29,3 +32,17 @@ def exec_bash(func):
         func(*args, **kwargs)
 
     return swap
+
+
+def lines(fc, split_flag="\n"):
+    if hasattr(fc, "__doc__"):
+        command = fc.__doc__
+    elif isinstance(fc, (tuple, list)):
+        command = fc
+    else:
+        command = None
+
+    if command:
+        command = (c.strip() for c in command.split(split_flag) if c.strip())
+        for line in command:
+            yield line

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*
 
-from __init__ import pf
+from _internal_utils import lines, pf
 from fabric.api import settings, sudo
 
 
@@ -9,7 +9,7 @@ def depend_redhat():
     """
     sudo yum install -y gcc-c++ make
     """
-    for line in depend_redhat.__doc__.split("\n"):
+    for line in lines(depend_redhat):
         sudo(line)
 
 
@@ -17,7 +17,7 @@ def depend_debian():
     """
     sudo apt-get install -y build-essential
     """
-    for line in depend_debian.__doc__.split("\n"):
+    for line in lines(depend_debian):
         sudo(line)
 
 

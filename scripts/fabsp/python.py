@@ -1,8 +1,17 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from _internal_utils import exec_bash, pf
-from fabric.api import cd, run, settings, sudo
+from os import environ
+
+from _internal_utils import exec_bash, pf, lines
+from fabric.api import cd, settings, sudo
+
+
+if not environ.get("PY2"):
+    environ["PY2"] = "2.7.15"
+
+if not environ.get("PY3"):
+    environ["PY3"] = "3.6.8"
 
 
 @exec_bash
@@ -24,12 +33,12 @@ def depend_debian():
 
 def download_py2():
     """
-    curl -sL https://www.python.org/ftp/python/2.7.15/Python-2.7.15.tgz | tar -xz
+    curl -sL https://www.python.org/ftp/python/{var}/Python-{var}.tgz | tar -xz
     """
 
     with cd("/usr/src"), settings(warn_only=True):
-        for line in download_py2.__doc__.split("\n"):
-            sudo(line)
+        for line in lines(download_py2):
+            sudo(line.format(var=environ["PY2"]))
 
 
 def download_py3():
@@ -38,7 +47,7 @@ def download_py3():
     """
 
     with cd("/usr/src"), settings(warn_only=True):
-        for line in download_py3.__doc__.split("\n"):
+        for line in lines(download_py3):
             sudo(line)
 
 
@@ -48,8 +57,7 @@ def depend():
         ("redhat", depend_redhat),
     ]
 
-    ret = run("python -c 'import platform;platform.platform()'")
-    dict(depend_map)[pf(ret)]()
+    dict(depend_map)[pf()]()
 
 
 def setup_pip():
@@ -60,7 +68,7 @@ def setup_pip():
     """
 
     with cd("/usr/src"), settings(warn_only=True):
-        for line in setup_pip.__doc__.split("\n"):
+        for line in lines(setup_pip):
             sudo(line)
 
 
@@ -78,8 +86,8 @@ def install_py2():
 
     download_py2()
 
-    with cd("/usr/src/Python-2.7.15"), settings(warn_only=True):
-        for line in install_py2.__doc__.split("\n"):
+    with cd("/usr/src/Python-{var}".format(var=environ["PY2"])), settings(warn_only=True):
+        for line in lines(install_py2):
             sudo(line)
 
 
@@ -97,6 +105,6 @@ def install_py3():
 
     download_py3()
 
-    with cd("/usr/src/Python-3.6.8"), settings(warn_only=True):
-        for line in install_py3.__doc__.split("\n"):
+    with cd("/usr/src/Python-{var}".format(var=environ["PY3"])), settings(warn_only=True):
+        for line in lines(install_py3):
             sudo(line)
