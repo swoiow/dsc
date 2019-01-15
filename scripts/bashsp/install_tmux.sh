@@ -14,3 +14,4 @@ git clone https://github.com/tmux/tmux.git --depth 1
 cd tmux
 sh autogen.sh
 ./configure && make
+make install
