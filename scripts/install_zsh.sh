@@ -16,5 +16,5 @@ if [ ! -f "$file" ]; then
 fi
 
 export ZSH="/usr/local/oh-my-zsh"
-sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-sudo chown -R root:users /usr/local/oh-my-zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+chown -R root:users /usr/local/oh-my-zsh
