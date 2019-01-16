@@ -259,6 +259,11 @@
 
 [mixxx]: https://www.mixxx.org/
 
+  + DOC2PDF [![][wbIcon]][DOC2PDF]
+    + (VBScript) 批量转换当前目录及子目录下所有DOC文件到PDF
+
+[DOC2PDF]: https://github.com/cxgreat2014/VBScript_DOC2PDF
+
 ---
 # [SerialNumber]
 [SerialNumber]: https://github.com/swoiow/dsc/blob/master/.misc/SerialNumber.md
