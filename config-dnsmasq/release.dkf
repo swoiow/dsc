@@ -20,7 +20,7 @@ log-queries                            \n\
                                        \n\
 conf-file=/tmp/dnsmasq/domains.txt     \n\
 addn-hosts=/tmp/dnsmasq/hostnames.txt' \
->> /etc/resolv.dnsmasq.conf
+> /etc/dnsmasq.conf
 
 ADD https://github.com/swoiow/dsc/raw/master/config-dnsmasq/resolv.dnsmasq.conf /etc/resolv.dnsmasq.conf
 ADD https://raw.githubusercontent.com/notracking/hosts-blocklists/master/hostnames.txt /tmp/dnsmasq/hostnames.txt
