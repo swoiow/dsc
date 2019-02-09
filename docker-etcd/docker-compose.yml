@@ -1,0 +1,27 @@
+version: '3.5'
+
+services:
+  etcd:
+    container_name: etcd0
+    image: quay.io/coreos/etcd:v3.3.12
+    ports:
+      - "2379:2379"
+      - "4001:4001"
+      - "2380:2380"
+    environment:
+      - TZ=CST-8
+      - LANG=zh_CN.UTF-8
+    command:
+      /usr/local/bin/etcd
+      -name etcd0
+      -data-dir /etcd-data
+      -advertise-client-urls http://${HOST_IP}:2379,http://${HOST_IP}:4001
+      -listen-client-urls http://0.0.0.0:2379,http://0.0.0.0:4001
+      -initial-advertise-peer-urls http://${HOST_IP}:2380
+      -listen-peer-urls http://0.0.0.0:2380
+      -initial-cluster-token docker-etcd
+      -initial-cluster etcd0=http://${HOST_IP}:2380
+      -initial-cluster-state new
+    volumes:
+      - "/data/etcd:/etcd-data"
+      # - "/data/config/etcd/ca-certificates/:/etc/ssl/certs"
