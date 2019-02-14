@@ -1,0 +1,66 @@
+version: "3.5"
+
+services:
+  redis:
+    container_name: tyk_redis
+    image: redis
+    restart: always
+
+    ports:
+      - 127.0.0.1:6379:6379
+    networks:
+      - tyk
+
+  mongo:
+    container_name: tyk_mongo
+    image: mongo
+    restart: always
+
+    ports:
+      - 127.0.0.1:27017:27017
+    networks:
+      - tyk
+
+  gateway:
+    container_name: tyk_gateway
+    image: tykio/tyk-gateway
+    restart: always
+
+    volumes:
+      - "$PWD/confs/tyk.yml:/opt/tyk-gateway/tyk.conf:ro"
+    #      - "$PWD/apps:/opt/tyk-gateway/apps"
+
+    ports:
+      - 0.0.0.0:8080:8080
+
+#    networks:
+#      - tyk
+
+    network_mode: "host"
+    extra_hosts:
+      - "redis:127.0.0.1"
+      - "dashboard:127.0.0.1"
+      - "gateway:127.0.0.1"
+
+  dashboard:
+    container_name: tyk_dashboard
+    image: tykio/tyk-dashboard
+    restart: always
+
+    volumes:
+      - "$PWD/confs/tyk_analytics.yml:/opt/tyk-dashboard/tyk_analytics.conf:ro"
+
+    ports:
+      - 0.0.0.0:3000:3000
+
+    links:
+      - mongo
+      - redis
+      - gateway
+
+    networks:
+      - tyk
+
+networks:
+  tyk:
+    name: tyk_net

@@ -1,0 +1,81 @@
+{
+  "listen_port": 3000,
+  "tyk_api_config": {
+    "Host": "http://gateway",
+    "Port": "8080",
+    "Secret": "352d20ee67be67f6340b4c0605b044b7"
+  },
+  "mongo_url": "mongodb://mongo:27017/tyk_analytics",
+  "page_size": 10,
+  "admin_secret": "12345",
+  "shared_node_secret": "352d20ee67be67f6340b4c0605b044b7",
+  "redis_port": 6379,
+  "redis_host": "redis",
+  "redis_password": "",
+  "enable_cluster": false,
+  "force_api_defaults": false,
+  "notify_on_change": true,
+  "license_key": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGxvd2VkX25vZGVzIjoiN2FjNGZlY2MtYzVhZi00YWZkLTU3OTUtZDhhZDBiY2YyY2RlIiwiZXhwIjoxNTgxNDcyNzQzLCJvd25lciI6IjVjNjIyN2VmNDVmOTJlMDg4ZmFjNjUzNyJ9.rGH4gxj21buH7lqrpg4vSoGQMlmM0cUlmRXIxO84Hcu_HTOiFHSm_m38M2VjRJh1WnruG0Vyy4rSZdcCJ8fQ6OEdsqmmTqkNMwnGMuKMbAq35APg8Uo9SI_PD16s4ZlBR6Mhx-K9p3RU1E-yP-QfeERaPfEyEa6KDzuwcf0hdtDX_VcryNfq_t6NQlSjQkPKCNIzpjOXHxxeC5QnO57P1SCaG-WY5vAaTAP3wiZvZeUGpvCgQXvvKdqybsieUt4o2i5gq4QYlzxU77tdckIaRv1ZtOt066zaptsm4jXD5NpJu9K6rVQRjsSXrtE_DvZDL-2H1_7RyroMf3GYgfiJIA",
+  "redis_database": 0,
+  "redis_hosts": null,
+  "hash_keys": true,
+  "email_backend": {
+    "enable_email_notifications": false,
+    "code": "sendgrid",
+    "settings": {
+      "ClientKey": ""
+    },
+    "default_from_email": "admin@dev.io",
+    "default_from_name": "Admin TYK."
+  },
+  "hide_listen_path": false,
+  "sentry_code": "",
+  "sentry_js_code": "",
+  "use_sentry": false,
+  "enable_master_keys": false,
+  "enable_duplicate_slugs": true,
+  "show_org_id": true,
+  "http_server_options": {
+    "use_ssl": false,
+    "certificates": [],
+    "min_version": 0
+  },
+  "ui": {
+    "languages": {
+      "Chinese": "cn",
+      "English": "en"
+    },
+    "hide_help": true,
+    "default_lang": "cn",
+    "login_page": {},
+    "nav": {
+      "dont_show_admin_sockets": false,
+      "hide_activity_by_api_section": false,
+      "hide_geo": false,
+      "hide_licenses_section": false,
+      "hide_logs": false,
+      "hide_tib_section": false
+    },
+    "uptime": {},
+    "portal_section": null,
+    "designer": {},
+    "dont_show_admin_sockets": false,
+    "dont_allow_license_management": false,
+    "dont_allow_license_management_view": false
+  },
+  "home_dir": "/opt/tyk-dashboard",
+  "tagging_options": {
+    "tag_all_apis_by_org": false
+  },
+  "use_sharded_analytics": true,
+  "enable_aggregate_lookups": true,
+  "enable_analytics_cache": false,
+  "aggregate_lookup_cutoff": "31/12/2020",
+  "maintenance_mode": false,
+  "allow_explicit_policy_id": true,
+  "private_key_path": "",
+  "node_schema_path": "",
+  "oauth_redirect_uri_separator": ";",
+  "statsd_connection_string": "",
+  "statsd_prefix": ""
+}
