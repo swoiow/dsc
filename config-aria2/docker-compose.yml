@@ -18,6 +18,16 @@ services:
       - $PWD/downloads:/aria2/downloads
       - $PWD/certs:/aria2/certs
 
+  ssl:
+    container_name: gen_ssl_certs
+    image: frapsoft/openssl
+
+#    entrypoint: /bin/ash
+    command: req -x509 -sha256 -nodes -days 365 -newkey rsa:2048 -keyout /work/ssl.key -out /work/ssl.crt -subj "/C=CN/ST=GD/L=GZ/O=Global Security/OU=Docker Dev/CN=localhost-dev.io/"
+
+    volumes:
+      - $PWD/certs:/work
+
   nginx:
     image: nginx:alpine
 
@@ -31,6 +41,10 @@ services:
 
     volumes:
       - $PWD/downloads:/www
-      - "$PWD/ngx_default.conf:/etc/nginx/conf.d/default.conf"
-      - "$PWD/ngx.sh:/etc/ngx.sh"
-#      - "$PWD/nginx.conf:/etc/nginx/nginx.conf"
+      - $PWD/certs:/etc/nginx/certs
+      - "$PWD/ngx_default.conf:/etc/nginx/conf.d/default.conf:ro"
+      - "$PWD/ngx.sh:/etc/ngx.sh:ro"
+    #      - "$PWD/nginx.conf:/etc/nginx/nginx.conf"
+
+    depends_on:
+      - ssl
