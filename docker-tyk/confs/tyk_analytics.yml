@@ -70,7 +70,7 @@
   "use_sharded_analytics": true,
   "enable_aggregate_lookups": true,
   "enable_analytics_cache": false,
-  "aggregate_lookup_cutoff": "31/12/2020",
+  "aggregate_lookup_cutoff": "01/08/2018",
   "maintenance_mode": false,
   "allow_explicit_policy_id": true,
   "private_key_path": "",

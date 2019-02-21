@@ -24,7 +24,12 @@ services:
   gateway:
     container_name: tyk_gateway
     image: tykio/tyk-gateway
-    restart: always
+
+    deploy:
+      restart_policy:
+        condition: unless-stop
+        delay: 5s
+        max_attempts: 3
 
     volumes:
       - "$PWD/confs/tyk.yml:/opt/tyk-gateway/tyk.conf:ro"
@@ -32,9 +37,6 @@ services:
 
     ports:
       - 0.0.0.0:8080:8080
-
-#    networks:
-#      - tyk
 
     network_mode: "host"
     extra_hosts:
@@ -45,7 +47,12 @@ services:
   dashboard:
     container_name: tyk_dashboard
     image: tykio/tyk-dashboard
-    restart: always
+
+    deploy:
+      restart_policy:
+        condition: unless-stop
+        delay: 5s
+        max_attempts: 3
 
     volumes:
       - "$PWD/confs/tyk_analytics.yml:/opt/tyk-dashboard/tyk_analytics.conf:ro"
@@ -53,10 +60,24 @@ services:
     ports:
       - 0.0.0.0:3000:3000
 
-    links:
-      - mongo
-      - redis
-      - gateway
+    network_mode: "host"
+    extra_hosts:
+      - "redis:127.0.0.1"
+      - "mongo:127.0.0.1"
+      - "gateway:127.0.0.1"
+
+  tyk-pump:
+    container_name: tyk_pump
+    image: tykio/tyk-pump-docker-pub
+
+    deploy:
+      restart_policy:
+        condition: unless-stop
+        delay: 5s
+        max_attempts: 3
+
+    volumes:
+      - "$PWD/confs/tyk_pump.yml:/opt/tyk-pump/tyk_pump.conf:ro"
 
     networks:
       - tyk

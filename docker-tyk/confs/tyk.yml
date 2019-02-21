@@ -38,6 +38,11 @@
   "enable_analytics": true,
   "analytics_config": {
     "type": "mongo",
+    "csv_dir": "/tmp",
+    "mongo_url": "mongodb://mongo:27017",
+    "mongo_db_name": "tyk_analytics",
+    "mongo_collection": "tyk_analytics",
+    "purge_delay": 120,
     "ignored_ips": [],
     "enable_detailed_recording": false,
     "enable_geo_ip": false,
