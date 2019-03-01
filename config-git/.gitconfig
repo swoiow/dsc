@@ -5,8 +5,11 @@
 	whitespace = trailing-space
     ignorecase = true
 [alias]
-	ig = "!f() { curl -L -s https://raw.githubusercontent.com/swoiow/dsc/master/.gitignore -o .gitignore ;}; f"
-	ag = "!f() { eval $(ssh-agent -s) && ssh-add ~/.ssh/github && ssh-add ~/.ssh/bitbucket && ssh-add ~/.ssh/gitlab ;}; f"
+    ig = "!f() { printf '.idea\n\n# Python part\n' > .gitignore && \
+            curl -L -s https://github.com/github/gitignore/raw/master/Python.gitignore >> .gitignore && \
+            printf '\n\n# Node part\n' >> .gitignore && \
+            curl -L -s https://github.com/github/gitignore/raw/master/Node.gitignore >> .gitignore ;}; f"
+    ag = "!f() { eval $(ssh-agent -s) && ssh-add ~/.ssh/github && ssh-add ~/.ssh/bitbucket && ssh-add ~/.ssh/gitlab ;}; f"
 	githubuser = "!f() { git config user.name swoiow && git config user.email swoiow@users.noreply.github.com ;}; f"
 	devuser = "!f() { git config user.name DevUser && git config user.email user@localhost.dev ;}; f"
     setcrlf = "!f() { case \"$(uname -s)\" in \
