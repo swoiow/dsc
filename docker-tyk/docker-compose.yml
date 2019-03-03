@@ -77,7 +77,7 @@ services:
         max_attempts: 3
 
     volumes:
-      - "$PWD/confs/tyk_pump.yml:/opt/tyk-pump/tyk_pump.conf:ro"
+      - "$PWD/confs/tyk_pump.yml:/opt/tyk-pump/pump.conf:ro"
 
     networks:
       - tyk
