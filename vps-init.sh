@@ -99,12 +99,15 @@ echo '/swapfile   none    swap    sw    0   0' >> /etc/fstab
 setDNS(){
 echo "修改DNS"
 cat > /etc/resolv.conf << EOF
+nameserver 127.0.0.1
 nameserver 1.1.1.1
+nameserver 1.0.0.1
+nameserver 8.8.4.4
 nameserver 8.8.8.8
 EOF
 }
 
-install_bbr(){
+installBBR(){
 # https://www.vultr.com/docs/how-to-deploy-google-bbr-on-centos-7
 
 echo "Install the ELRepo repo"
@@ -127,7 +130,7 @@ sudo grub2-set-default 0
 #sudo shutdown -r now
 }
 
-enable_bbr(){
+enableBBR(){
 echo 'net.core.default_qdisc=fq' | sudo tee -a /etc/sysctl.d/99-bbr.conf
 echo 'net.ipv4.tcp_congestion_control=bbr' | sudo tee -a /etc/sysctl.d/99-bbr.conf
 sudo sysctl -p
@@ -139,15 +142,23 @@ sudo sysctl -n net.ipv4.tcp_congestion_control
 lsmod | grep bbr
 }
 
-yum update -y
+disableUpdateKernel(){
+echo '禁止YUM升级内核'
+cat > /etc/yum.conf << EOF
+exclude=kernel*
+EOF
+}
+
+yum upgrade -y
 
 setHKTime
 setSSHConfig
 setDNS
-install_bbr
-enable_bbr
+installBBR
+enableBBR
 setSysConf
 kernelOptimize
 addSwap
+disableUpdateKernel
 
 shutdown -r now

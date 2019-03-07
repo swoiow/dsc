@@ -18,7 +18,7 @@ fi
 
 
 # function
-onvenv () {
+onvenv(){
     if [ -d "venv" ]; then
         source venv/bin/activate
     else
@@ -26,7 +26,7 @@ onvenv () {
     fi
 }
 
-vim_install () {
+vim_install(){
     yum install -y install cmake gcc-c++ make git
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
     vim_update
