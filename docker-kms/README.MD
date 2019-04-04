@@ -54,3 +54,8 @@ cscript ospp.vbs /dstatus
 ```
 
 ##### 通过以上步骤就可以激活你的Windows系统和Office软件，但是值得注意的是，KMS方式激活的有效期只有180天，因此每不到半年需要重新激活一次。
+
+---
+
+### Note of Office 2016
+> https://0w0.pw/216.html
