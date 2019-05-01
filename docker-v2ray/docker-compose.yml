@@ -1,0 +1,14 @@
+version: "3.5"
+
+services:
+  v2ray:
+    build:
+      dockerfile: ./Dockerfile
+      context: .
+
+    container_name: v2ray
+    image: v2ray
+    ports:
+      - "8388:1090"
+    volumes:
+      - "$PWD/config-server.json:/etc/v2ray/config.json:ro"

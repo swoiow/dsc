@@ -1,0 +1,27 @@
+{
+  "inbounds": [
+    {
+      "port": 12345,
+      "protocol": "vmess",
+      "settings": {
+        "clients": [
+          {
+            "id": "54321"
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/websocket/"
+        }
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "freedom",
+      "settings": {}
+    }
+  ]
+}

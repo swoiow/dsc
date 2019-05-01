@@ -1,0 +1,18 @@
+FROM golang
+
+WORKDIR /ss
+
+ADD https://github.com/shadowsocks/shadowsocks-go/raw/master/cmd/shadowsocks-server/server.go /ss
+RUN go get github.com/shadowsocks/shadowsocks-go/shadowsocks && \
+    CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o ss-server .
+
+FROM debian:stretch-slim
+WORKDIR /ss
+ADD https://github.com/Yelp/dumb-init/releases/download/v1.2.2/dumb-init_1.2.2_amd64 /usr/local/bin/dumb-init
+RUN chmod +x /usr/local/bin/dumb-init
+COPY --from=0 /ss/ss-server /usr/local/bin/ss-server
+RUN chmod +x /usr/local/bin/ss-server
+
+USER nobody
+
+ENTRYPOINT ["dumb-init", "--"]
