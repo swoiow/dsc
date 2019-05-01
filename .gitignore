@@ -96,6 +96,7 @@ ENV/
 
 # npm
 node_modules
+.npm
 
 # Pycharm
 .idea

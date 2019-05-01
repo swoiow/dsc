@@ -1,2 +1,2 @@
-# dsc
-dockerfile, script, config
+# Leetcode
+> my leetcode of python & golang.

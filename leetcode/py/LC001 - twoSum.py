@@ -1,12 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from cells.wrapper import show_run_time
-
 
 class Solution:
 
-    @show_run_time
     def twoSum(self, nums: list, target: int) -> (list, tuple):
         hs = [(nums[0], 0)]
 
