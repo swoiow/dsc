@@ -1,0 +1,56 @@
+{
+  "inbounds": [
+    {
+      "port": 12345,
+      "listen": "127.0.0.1",
+      "protocol": "socks",
+      "settings": {
+        "udp": true
+      }
+    }
+  ],
+  "outbound": {
+    "mux": {
+      "enabled": true
+    },
+    "protocol": "vmess",
+    "settings": {
+      "vnext": [
+        {
+          "address": "fill-your-domain",
+          "port": 443,
+          "users": [
+            {
+              "id": "fill-your-uuid",
+              "alterId": 32,
+              "security": "aes-128-gcm"
+            }
+          ]
+        }
+      ]
+    },
+    "streamSettings": {
+      "network": "ws",
+      "wsSettings": {
+        "path": "/fill-your-path/"
+      },
+      "security": "tls",
+      "tlsSettings": {
+        "serverName": "fill-your-domain",
+        "allowInsecure": false
+      }
+    }
+  },
+  "routing": {
+    "domainStrategy": "IPOnDemand",
+    "rules": [
+      {
+        "type": "field",
+        "ip": [
+          "geoip:private"
+        ],
+        "outboundTag": "direct"
+      }
+    ]
+  }
+}
