@@ -4,7 +4,7 @@ ADD https://github.com/v2ray/v2ray-core/raw/master/release/install-release.sh /t
 RUN chmod +x /tmp/go.sh
 RUN /tmp/go.sh
 
-FROM debian:stretch-slim
+FROM alpine:latest
 
 ADD https://github.com/Yelp/dumb-init/releases/download/v1.2.2/dumb-init_1.2.2_amd64 /usr/local/bin/dumb-init
 RUN chmod +x /usr/local/bin/dumb-init
@@ -16,12 +16,10 @@ COPY --from=builder /usr/bin/v2ray/geosite.dat /usr/bin/v2ray/
 ADD https://github.com/v2ray/ext/raw/master/docker/official/config.json /etc/v2ray/config.json
 
 RUN set -ex && \
-    apt-get update && \
-    apt-get install -y --no-install-recommends ca-certificates && \
+    apk --no-cache add ca-certificates && \
     mkdir /var/log/v2ray/ &&\
     chmod +x /usr/bin/v2ray/v2ctl && \
-    chmod +x /usr/bin/v2ray/v2ray && \
-    rm -rf /var/lib/apt/lists/*
+    chmod +x /usr/bin/v2ray/v2ray
 
 ENV PATH /usr/bin/v2ray:$PATH
 

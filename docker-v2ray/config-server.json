@@ -6,7 +6,11 @@
       "settings": {
         "clients": [
           {
-            "id": "54321"
+            "id": "uuid-user-demo",
+            "alterId": 32,
+            "_metadata": {
+              "user": "master"
+            }
           }
         ]
       },
