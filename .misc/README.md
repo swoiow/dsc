@@ -136,6 +136,7 @@
   + Office
   
   [Office 官方卸载工具](https://support.office.com/zh-cn/article/%E4%BB%8E-pc-%E5%8D%B8%E8%BD%BD-office-9dd49b83-264a-477a-8fcc-2fdf5dbf61d8#OfficeVersion=2013)
+  [Office2013 安装问题](https://wulalawula.blogspot.com/2018/08/windows-10-1803-office-2013.html)
 
   > MSDN 我告诉你 [![][wbIcon]][MSDNitellyou]
 
