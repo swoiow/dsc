@@ -11,10 +11,12 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'jnurmine/Zenburn'
 Plugin 'altercation/vim-colors-solarized'
 
+Plugin 'scrooloose/nerdtree'
+
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " 显示相关
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " autocmd InsertEnter * se cul
@@ -31,13 +33,41 @@ set shortmess=atI
 set termencoding=utf-8
 syntax on
 
-""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " 键盘命令
 """"""""""""""""""""""""""""""""""""""""""""""""""
 map <C-A> ggVGY
 set pastetoggle=<F12>
 
-""""""""""""""""""""""""""""""""""""""""""""""""""
+map <F5> :call CompileRunGcc()<CR>
+func! CompileRunGcc()
+    exec "w"
+    if &filetype == 'c'
+            exec "!g++ % -o %<"
+            exec "!time ./%<"
+    elseif &filetype == 'cpp'
+            exec "!g++ % -o %<"
+            exec "!time ./%<"
+    elseif &filetype == 'java'
+            exec "!javac %"
+            exec "!time java %<"
+    elseif &filetype == 'sh'
+            :!time bash %
+    elseif &filetype == 'python'
+            exec "!clear"
+            exec "!time python3 %"
+    elseif &filetype == 'html'
+            exec "!firefox % &"
+    elseif &filetype == 'go'
+            " exec "!go build %<"
+            exec "!time go run %"
+    elseif &filetype == 'mkd'
+            exec "!~/.vim/markdown.pl % > %.html &"
+            exec "!firefox %.html &"
+    endif
+endfunc
+
+
 " 实用设置
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " set autoindent
@@ -62,7 +92,7 @@ set mouse=v
 " set selection=exclusive
 " set selectmode=mouse,key
 
-""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " VIM Plugin Config
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -77,4 +107,7 @@ if has('gui_running')
 else
   colorscheme zenburn
 endif
-call togglebg#map("<F5>")
+call togglebg#map("<F3>")
+
+" NERDTree
+map <C-n> :NERDTreeToggle<CR>
