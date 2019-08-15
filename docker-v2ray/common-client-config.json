@@ -1,0 +1,91 @@
+{
+  "log": {
+    "access": "none",
+    "loglevel": "error"
+  },
+  "dns": {
+    "hosts": {
+      "geosite:google": "8.8.8.8"
+    },
+    "servers": [
+      {
+        "address": "1.1.1.1",
+        "port": 5353,
+        "domains": [
+          "geosite:cn"
+        ]
+      },
+      "1.1.1.1",
+      "8.8.8.8",
+      "1.0.0.1",
+      "8.8.4.4",
+      "localhost"
+    ],
+    "tag": "dns_in_all"
+  },
+  "inbounds": [
+    {
+      "port": 1080,
+      "protocol": "socks",
+      "settings": {},
+      "streamSettings": {
+        "network": "kcp"
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "vmess",
+      "settings": {
+        "vnext": [
+          {
+            "address": "服务器地址",
+            "port": 55303,
+            "users": [
+              {
+                "id": "a9a36422-d0a4-c41b-3fcb-417e5c98facd",
+                "alterId": 11
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "kcp"
+      }
+    }
+  ],
+  "transport": {
+    "tcpSettings": {},
+    "kcpSettings": {
+      "mtu": 1350,
+      "tti": 50,
+      "uplinkCapacity": 5,
+      "downlinkCapacity": 100,
+      "congestion": false,
+      "readBufferSize": 2,
+      "writeBufferSize": 2,
+      "header": {
+        "type": "none"
+      }
+    },
+    "wsSettings": {
+      "path": "/",
+      "headers": {
+        "Host": "dev.io"
+      }
+    },
+    "httpSettings": {},
+    "dsSettings": {},
+    "quicSettings": {
+      "security": "chacha20-poly1305",
+      "key": "MIIDEDCCAfigAwIBAgIRALaQZMjUCpK473JHMiLm6GAwDQYJKoZIhvcNAQELBQAw",
+      "header": {
+        "type": "none"
+      }
+    }
+  },
+  "routing": {},
+  "policy": {},
+  "reverse": {}
+}

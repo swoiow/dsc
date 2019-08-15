@@ -1,0 +1,103 @@
+{
+  "log": {
+    "access": "none",
+    "loglevel": "error"
+  },
+  "dns": {
+    "hosts": {
+      "geosite:google": "8.8.8.8"
+    },
+    "servers": [
+      {
+        "address": "1.1.1.1",
+        "port": 5353,
+        "domains": [
+          "geosite:cn"
+        ]
+      },
+      "1.1.1.1",
+      "8.8.8.8",
+      "1.0.0.1",
+      "8.8.4.4",
+      "localhost"
+    ],
+    "tag": "dns_in_all"
+  },
+  "inbounds": [
+    {
+      "port": 55303,
+      "protocol": "vmess",
+      "settings": {
+        "clients": [
+          {
+            "id": "a9a36422-d0a4-c41b-3fcb-417e5c98facd",
+            "alterId": 11
+          }
+        ],
+        "detour": {
+          "to": "dynamicPort"
+        }
+      },
+      "streamSettings": {
+        "network": "kcp"
+      }
+    },
+    {
+      "protocol": "vmess",
+      "port": "10000-20000",
+      "tag": "dynamicPort",
+      "settings": {
+        "default": {
+          "alterId": 11
+        }
+      },
+      "allocate": {
+        "strategy": "random",
+        "concurrency": 2,
+        "refresh": 5
+      },
+      "streamSettings": {
+        "network": "kcp"
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "freedom",
+      "settings": {}
+    }
+  ],
+  "transport": {
+    "tcpSettings": {},
+    "kcpSettings": {
+      "mtu": 1350,
+      "tti": 50,
+      "uplinkCapacity": 5,
+      "downlinkCapacity": 100,
+      "congestion": false,
+      "readBufferSize": 2,
+      "writeBufferSize": 2,
+      "header": {
+        "type": "none"
+      }
+    },
+    "wsSettings": {
+      "path": "/",
+      "headers": {
+        "Host": "dev.io"
+      }
+    },
+    "httpSettings": {},
+    "dsSettings": {},
+    "quicSettings": {
+      "security": "chacha20-poly1305",
+      "key": "MIIDEDCCAfigAwIBAgIRALaQZMjUCpK473JHMiLm6GAwDQYJKoZIhvcNAQELBQAw",
+      "header": {
+        "type": "none"
+      }
+    }
+  },
+  "routing": {},
+  "policy": {},
+  "reverse": {}
+}
