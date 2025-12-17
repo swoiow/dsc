@@ -1,23 +1,28 @@
-FROM alpine:edge
+FROM alpine:3.23
 
-ADD https://github.com/swoiow/dsc/raw/master/config-aria2/config/aria2.conf /etc/aria2.conf.default
-ADD https://github.com/swoiow/dsc/raw/master/config-aria2/prepare.sh /prepare.sh
+ENV TZ=Asia/Shanghai \
+    PUID=65534 \
+    PGID=65534
 
-RUN set -xe \
-    && apk add --no-cache \
-        aria2 \
-        dumb-init \
+WORKDIR /app
 
-    && chmod 644 /prepare.sh \
-    && chmod 644 /etc/aria2.conf.default \
-    && rm -rf /var/cache/apk/*
+RUN set -eux; \
+    apk add --no-cache \
+      aria2 \
+      dumb-init \
+      su-exec \
+      ca-certificates \
+      tzdata; \
+    update-ca-certificates; \
+    mkdir -p /app/configs /app/downloads; \
+    if [ -f "/usr/share/zoneinfo/${TZ}" ]; then \
+      cp "/usr/share/zoneinfo/${TZ}" /etc/localtime; \
+      echo "${TZ}" > /etc/timezone; \
+    fi
 
-WORKDIR /aria2
-
-VOLUME /aria2/config /aria2/downloads
-
-EXPOSE 6800
+# 你调过的“速度优先”配置作为默认模板
+COPY --chmod=644 ./configs/aria2.conf /etc/aria2.conf
+COPY --chmod=755 ./entrypoint.sh /usr/local/bin/entrypoint.sh
 
 ENTRYPOINT ["dumb-init", "--"]
-
-CMD ["sh", "/prepare.sh"]
+CMD ["/usr/local/bin/entrypoint.sh"]
